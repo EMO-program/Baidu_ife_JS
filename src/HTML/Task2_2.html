@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+        <style>
+         body,div,li,ul{padding:0px;margin:0px;}
+        .container{border:1px solid #cccccc;padding:10px;width:300px; height:auto;position:relative;left:50%;margin-left:-150px;display: flex;flex-direction:column;align-items: center }
+         #B1{width:200px;}
+            #aqi-list{padding:0px;margin:20px;margin-top:0px;list-style: none}
+
+
+        </style>
+</head>
+<body>
+<div class="container">
+<h3>污染城市列表</h3>
+<ul id="aqi-list"></ul>
+
+<input type="button" id="B1" value="进行筛选" onclick="qsort()"/>
+</div>
+    <script type="text/javascript">
+
+    var aqiData = [
+        ["北京", 90],
+        ["上海", 60],
+        ["福州", 10],
+        ["广州", 50],
+        ["成都", 90],
+        ["西安", 100]
+    ];
+
+    /*
+     在注释下方编写代码
+     遍历读取aqiData中各个城市的数据
+     将空气质量指数大于60的城市显示到aqi-list的列表中
+     */
+    function qsort() {
+        var bb=document.getElementById("B1");
+        bb.value="筛选完毕";
+        bb.onclick="";
+        var pos=["一","二","三","四","五","六"];
+       var temp =aqiData;
+        var qul=document.getElementById("aqi-list");
+        var sortData=temp.filter(function(item){
+            return item[1]>=60;
+        }).sort(function(a,b){
+            return b[1]-a[1];
+        });
+        sortData.forEach (function(item, index){
+                qul.innerHTML+="<li>  第"+pos[index]+"名："+item[0]+"， 空气质量值为："+item[1]+"</li>";})
+
+
+    }
+
+</script>
+</body>
+</html>
